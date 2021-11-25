@@ -13,11 +13,12 @@ class tarefasService {
 
     edit = async (id, tarefa) => {
         return await TarefasModel.findByIdAndUpdate(id, tarefa)
-    };
+      };
+    
 
-    delete =  async (id) => {
-        return await TarefasModel.findByIdAndDelete(id)
-    };
-}
+      delete = async (id) => {
+        return await TarefasModel.deleteOne({ _id: id})
+      }
+    }
 
 module.exports = tarefasService;

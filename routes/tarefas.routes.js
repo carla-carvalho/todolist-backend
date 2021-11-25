@@ -1,6 +1,8 @@
 const express = require('express');
 const TarefasController = require('./../controllers/tarefas.controller');
 
+const TarefasControllerFunc = require('./../controllers/tarefas.func.controller');
+
 const tarefasController = new TarefasController();
 
 const router = express.Router();

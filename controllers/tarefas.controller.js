@@ -1,5 +1,5 @@
 
-const TarefasService = require('../services/tarefas.service.js');
+const TarefasService = require('../services/tarefas.service');
 
 const tarefasService = new TarefasService;
 
@@ -33,8 +33,9 @@ class TarefasController {
     }
 
     editTarefa =  async (req, res) => {
+        const idParam = req.params.id;
         const tarefaEdit = req.body;
-        await listsService.edit(req.params.id, listEdit)
+        await tarefasService.edit(idParam, tarefaEdit)
         .then(() => {
             res.send({message: ` A tarefa foi editada com sucesso.`})
         })
@@ -44,12 +45,13 @@ class TarefasController {
     }
 
     deleteTarefa = async (req, res) => {
-        await tarefasService.delete(req.params.id)
+        const idParam = req.params.id;
+        await musicasService.delete(idParam)
         .then(() => {
-            res.send({message: ` Tarefa excluída com sucesso!`})
+          res.send({message: 'Excluido com sucesso'})
         })
-        .catch( err => {
-            res.status(500).send({message: 'Um erro foi encontrado.'})
+        .catch(err => {
+          res.status(500).send({error: `Error: ${err}`});
         })
     }
 }
